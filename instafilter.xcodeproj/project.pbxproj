@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE9C111E2BD084CA0041A2A8 /* ContentUnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C111D2BD084CA0041A2A8 /* ContentUnavailableView.swift */; };
 		CED4CDD72BC9ADE4003E4D06 /* instafilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4CDD62BC9ADE4003E4D06 /* instafilterApp.swift */; };
 		CED4CDD92BC9ADE4003E4D06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4CDD82BC9ADE4003E4D06 /* ContentView.swift */; };
 		CED4CDDB2BC9ADE8003E4D06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED4CDDA2BC9ADE8003E4D06 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE9C111D2BD084CA0041A2A8 /* ContentUnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUnavailableView.swift; sourceTree = "<group>"; };
 		CED4CDD32BC9ADE4003E4D06 /* instafilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instafilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED4CDD62BC9ADE4003E4D06 /* instafilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instafilterApp.swift; sourceTree = "<group>"; };
 		CED4CDD82BC9ADE4003E4D06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				CED4CDD62BC9ADE4003E4D06 /* instafilterApp.swift */,
 				CED4CDD82BC9ADE4003E4D06 /* ContentView.swift */,
+				CE9C111D2BD084CA0041A2A8 /* ContentUnavailableView.swift */,
 				CED4CDDA2BC9ADE8003E4D06 /* Assets.xcassets */,
 				CED4CDDC2BC9ADE8003E4D06 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				CED4CDD92BC9ADE4003E4D06 /* ContentView.swift in Sources */,
 				CED4CDD72BC9ADE4003E4D06 /* instafilterApp.swift in Sources */,
+				CE9C111E2BD084CA0041A2A8 /* ContentUnavailableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
