@@ -5,6 +5,7 @@
 //  Created by Godwin IE on 12/04/2024.
 //
 
+import StoreKit
 import PhotosUI
 import SwiftUI
 
@@ -12,12 +13,20 @@ struct ContentView: View {
     @State private var pickerItems = [PhotosPickerItem]()
     @State private var selectedImages = [Image]()
     
+    let example = Image(.example)
+    @Environment(\.requestReview) var requestReview
+    
     var body: some View {
         VStack {
             PhotosPicker(selection: $pickerItems,
                          maxSelectionCount: 3,
                          matching: .any(of: [.images, .screenshots, .not(.videos)])) {
                 Label("Select pictures", systemImage: "photo")
+            }
+            ShareLink(item: example, preview: SharePreview("Airport", image: example))
+            
+            Button("Leave a review") {
+                requestReview()
             }
             
             ScrollView {
