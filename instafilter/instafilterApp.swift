@@ -11,7 +11,7 @@ import SwiftUI
 struct instafilterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PickerTesting()
         }
     }
 }

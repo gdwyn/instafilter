@@ -2,53 +2,51 @@
 //  ContentView.swift
 //  instafilter
 //
-//  Created by Godwin IE on 12/04/2024.
+//  Created by Godwin IE on 24/04/2024.
 //
 
-import StoreKit
-import PhotosUI
 import SwiftUI
 
 struct ContentView: View {
-    @State private var pickerItems = [PhotosPickerItem]()
-    @State private var selectedImages = [Image]()
-    
-    let example = Image(.example)
-    @Environment(\.requestReview) var requestReview
+    @State private var processedImage: Image?
+    @State private var filterIntensity = 0.5
     
     var body: some View {
-        VStack {
-            PhotosPicker(selection: $pickerItems,
-                         maxSelectionCount: 3,
-                         matching: .any(of: [.images, .screenshots, .not(.videos)])) {
-                Label("Select pictures", systemImage: "photo")
-            }
-            ShareLink(item: example, preview: SharePreview("Airport", image: example))
-            
-            Button("Leave a review") {
-                requestReview()
-            }
-            
-            ScrollView {
-                ForEach (0..<selectedImages.count, id: \.self) {i in
-                    selectedImages[i]
+        NavigationStack{
+            VStack{
+                Spacer()
+                
+                if let processedImage{
+                    processedImage
                         .resizable()
                         .scaledToFit()
+                } else {
+                    ContentUnavailableView("No picture", systemImage: "photo.badge.plus", description: Text("Tap to add photo"))
                 }
-            } // scrollview
-            
-        } // Vstack
-        .onChange(of: pickerItems) {
-            Task {
-                selectedImages.removeAll()
                 
-                for item in pickerItems {
-                    if let loadedImage = try await item.loadTransferable(type: Image.self) {
-                        selectedImages.append(loadedImage)
-                    }
+                Spacer()
+                
+                HStack{
+                    Text("Intensity")
+                    Slider(value: $filterIntensity)
                 }
-            }
-        } // onChange
+                
+                HStack{
+                    Button("Change filter", action: changeFilter)
+                }
+                
+                Spacer()
+                
+                // share the picture
+                
+            } //vstack
+            .padding([.horizontal, .bottom])
+            .navigationTitle("InstaFilter")
+        }
+    } //body
+    
+    func changeFilter() {
+        
     }
 }
 
