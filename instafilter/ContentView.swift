@@ -5,6 +5,8 @@
 //  Created by Godwin IE on 24/04/2024.
 //
 
+import CoreImage
+import CoreImage.CIFilterBuiltins
 import PhotosUI
 import SwiftUI
 
@@ -12,6 +14,8 @@ struct ContentView: View {
     @State private var processedImage: Image?
     @State private var filterIntensity = 0.5
     @State private var selectedItem: PhotosPickerItem?
+    @State private var currentFilter = CIFilter.sepiaTone()
+    let context = CIContext()
     
     var body: some View {
         NavigationStack{
@@ -35,6 +39,7 @@ struct ContentView: View {
                 HStack{
                     Text("Intensity")
                     Slider(value: $filterIntensity)
+                        .onChange(of: filterIntensity, applyProcessing)
                 }
                 
                 HStack{
@@ -42,6 +47,8 @@ struct ContentView: View {
                 }
                 
                 Spacer()
+                Spacer()
+
                 
                 // share the picture
                 
@@ -61,9 +68,22 @@ struct ContentView: View {
             
             guard let inputImage = UIImage(data: imageData) else {return}
             
-            //more code to come
+            let beginImage = CIImage(image: inputImage)
+            currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+            applyProcessing()
         }
     } //load image
+    
+    func applyProcessing() {
+        currentFilter.intensity = Float(filterIntensity)
+        
+        guard let outputImage = currentFilter.outputImage else { return }
+        
+        guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else { return }
+        
+        let uiImage = UIImage(cgImage: cgImage)
+        processedImage = Image(uiImage: uiImage)
+    } //apply processing
 }
 
 #Preview {
